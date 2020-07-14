@@ -1,0 +1,139 @@
+{
+  "uid" : "fd3e2ab9028bf6a2",
+  "name" : "test_incorrect[incorrect_data2]",
+  "fullName" : "TestCases.test_login.TestLogin#test_incorrect",
+  "historyId" : "9a23aa568774cb1eb1113c9dc5db5449",
+  "time" : {
+    "start" : 1594726609310,
+    "stop" : 1594726612221,
+    "duration" : 2911
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "init_course",
+    "time" : {
+      "start" : 1594726034231,
+      "stop" : 1594726034732,
+      "duration" : 501
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_driver",
+    "time" : {
+      "start" : 1594726601922,
+      "stop" : 1594726609309,
+      "duration" : 7387
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "6d58f5c4e60682c3",
+      "name" : "log",
+      "source" : "6d58f5c4e60682c3.txt",
+      "type" : "text/plain",
+      "size" : 3028
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "init_course::0",
+    "time" : {
+      "start" : 1594726724689,
+      "stop" : 1594726725013,
+      "duration" : 324
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_driver::0",
+    "time" : {
+      "start" : 1594726612225,
+      "stop" : 1594726614316,
+      "duration" : 2091
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('init_driver')"
+  }, {
+    "name" : "tag",
+    "value" : "login"
+  }, {
+    "name" : "parentSuite",
+    "value" : "TestCases"
+  }, {
+    "name" : "suite",
+    "value" : "test_login"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLogin"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-KFH4O7N"
+  }, {
+    "name" : "thread",
+    "value" : "20728-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "TestCases.test_login"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "incorrect_data",
+    "value" : "{'username': '1303845892', 'password': 'nmb_python', 'check': '用户不存在'}"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('init_driver')", "login" ]
+  },
+  "source" : "fd3e2ab9028bf6a2.json",
+  "parameterValues" : [ "{'username': '1303845892', 'password': 'nmb_python', 'check': '用户不存在'}" ]
+}

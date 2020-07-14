@@ -1,0 +1,613 @@
+{
+  "28e9c5ffc75a164b5fc32ce5123d15e4" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "44baa3d019fe3cbf",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/44baa3d019fe3cbf",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594728098065,
+        "stop" : 1594728098065,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "93addc39a777ec83",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/93addc39a777ec83",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727323762,
+        "stop" : 1594727323762,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "c7b55aebd5fbba20",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/c7b55aebd5fbba20",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726722639,
+        "stop" : 1594726722639,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "cf2df59a0b2b833",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/cf2df59a0b2b833",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725822626,
+        "stop" : 1594725822626,
+        "duration" : 0
+      }
+    } ]
+  },
+  "5daf695e92c3e307c712374dc36c0f48" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "31879b4712692eeb",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/31879b4712692eeb",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727954001,
+        "stop" : 1594727954002,
+        "duration" : 1
+      }
+    }, {
+      "uid" : "b30f770561b11c5e",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/b30f770561b11c5e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727264756,
+        "stop" : 1594727264756,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "c2574fb35d2fe168",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/c2574fb35d2fe168",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726623555,
+        "stop" : 1594726623555,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "c1120a7cf976648f",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/c1120a7cf976648f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725674455,
+        "stop" : 1594725674455,
+        "duration" : 0
+      }
+    } ]
+  },
+  "e64c0af6fef26d85bcdee262d7a7479c" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "8fb23ccbd3281a23",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/8fb23ccbd3281a23",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727808102,
+        "stop" : 1594727810367,
+        "duration" : 2265
+      }
+    }, {
+      "uid" : "aa9d9b53d04e6a1f",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/aa9d9b53d04e6a1f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727143519,
+        "stop" : 1594727173193,
+        "duration" : 29674
+      }
+    }, {
+      "uid" : "7073beb7ac8aeefa",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/7073beb7ac8aeefa",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726507808,
+        "stop" : 1594726560331,
+        "duration" : 52523
+      }
+    }, {
+      "uid" : "544edaf7bd366e8b",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/544edaf7bd366e8b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725604713,
+        "stop" : 1594725638461,
+        "duration" : 33748
+      }
+    } ]
+  },
+  "2d05b6e4a50a37632f00747a12a14907" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "ce502ac063600e5d",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/ce502ac063600e5d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727682326,
+        "stop" : 1594727684493,
+        "duration" : 2167
+      }
+    }, {
+      "uid" : "56f856de7554c5c9",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/56f856de7554c5c9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726919040,
+        "stop" : 1594726921512,
+        "duration" : 2472
+      }
+    }, {
+      "uid" : "274d3879602abf59",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/274d3879602abf59",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726081448,
+        "stop" : 1594726084158,
+        "duration" : 2710
+      }
+    }, {
+      "uid" : "1364af9ea4a3b17d",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/1364af9ea4a3b17d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725498965,
+        "stop" : 1594725500963,
+        "duration" : 1998
+      }
+    } ]
+  },
+  "53290d88e20d2317f31f454c1fd13191" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "6e7a3b3247aa452f",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/6e7a3b3247aa452f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727697876,
+        "stop" : 1594727701600,
+        "duration" : 3724
+      }
+    }, {
+      "uid" : "b439aa0ee7bc8289",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/b439aa0ee7bc8289",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727098966,
+        "stop" : 1594727101578,
+        "duration" : 2612
+      }
+    }, {
+      "uid" : "c0cef8e67294850f",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/c0cef8e67294850f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726428938,
+        "stop" : 1594726432044,
+        "duration" : 3106
+      }
+    }, {
+      "uid" : "c8267e1b59367806",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/c8267e1b59367806",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725510610,
+        "stop" : 1594725513300,
+        "duration" : 2690
+      }
+    } ]
+  },
+  "798d3155671bba87c0bd421a37d30b90" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "34877d153d216f46",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/34877d153d216f46",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727710457,
+        "stop" : 1594727713047,
+        "duration" : 2590
+      }
+    }, {
+      "uid" : "90849b44b894e29",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/90849b44b894e29",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727110515,
+        "stop" : 1594727112807,
+        "duration" : 2292
+      }
+    }, {
+      "uid" : "db3b84ac80a5b9f2",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/db3b84ac80a5b9f2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726443755,
+        "stop" : 1594726446583,
+        "duration" : 2828
+      }
+    }, {
+      "uid" : "93437e6c40268be0",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/93437e6c40268be0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725560459,
+        "stop" : 1594725563350,
+        "duration" : 2891
+      }
+    } ]
+  },
+  "0afd9caeb763ed1e2e2a9e58757ef7f4" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "8e64eabd9e97187a",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/8e64eabd9e97187a",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727825305,
+        "stop" : 1594727876338,
+        "duration" : 51033
+      }
+    }, {
+      "uid" : "aa7bf49d851f98a0",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/aa7bf49d851f98a0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727188248,
+        "stop" : 1594727240434,
+        "duration" : 52186
+      }
+    }, {
+      "uid" : "cc9da3a559a8f235",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/cc9da3a559a8f235",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726574730,
+        "stop" : 1594726599858,
+        "duration" : 25128
+      }
+    }, {
+      "uid" : "62ca04b50100fc51",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/62ca04b50100fc51",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725649594,
+        "stop" : 1594725652039,
+        "duration" : 2445
+      }
+    } ]
+  },
+  "9bb9892a2660a8308abb88c61508538a" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "600126f34276119e",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/600126f34276119e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594728001356,
+        "stop" : 1594728049062,
+        "duration" : 47706
+      }
+    }, {
+      "uid" : "f11eaf87f768c51f",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/f11eaf87f768c51f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727295754,
+        "stop" : 1594727298208,
+        "duration" : 2454
+      }
+    }, {
+      "uid" : "eea3dd9991ab0c45",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/eea3dd9991ab0c45",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726660408,
+        "stop" : 1594726662681,
+        "duration" : 2273
+      }
+    }, {
+      "uid" : "9cf22836dc015537",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/9cf22836dc015537",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725710960,
+        "stop" : 1594725730954,
+        "duration" : 19994
+      }
+    } ]
+  },
+  "112da8b9a54ed208633be3ddafacdf73" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "faaaa5b7e8ab3de5",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/faaaa5b7e8ab3de5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594728062660,
+        "stop" : 1594728084525,
+        "duration" : 21865
+      }
+    }, {
+      "uid" : "8ab24c78fb538d7",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/8ab24c78fb538d7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727308044,
+        "stop" : 1594727310861,
+        "duration" : 2817
+      }
+    }, {
+      "uid" : "a6ac79c01048eed0",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/a6ac79c01048eed0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726675658,
+        "stop" : 1594726709370,
+        "duration" : 33712
+      }
+    }, {
+      "uid" : "48f87aa73d78e95b",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/48f87aa73d78e95b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725744176,
+        "stop" : 1594725808032,
+        "duration" : 63856
+      }
+    } ]
+  },
+  "9a23aa568774cb1eb1113c9dc5db5449" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "df078f668e108d19",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/df078f668e108d19",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727891014,
+        "stop" : 1594727936969,
+        "duration" : 45955
+      }
+    }, {
+      "uid" : "efe56edc7484d6a4",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/efe56edc7484d6a4",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727249202,
+        "stop" : 1594727251976,
+        "duration" : 2774
+      }
+    }, {
+      "uid" : "62fc4097aef6e56c",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/62fc4097aef6e56c",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726609310,
+        "stop" : 1594726612221,
+        "duration" : 2911
+      }
+    }, {
+      "uid" : "229ebbe4d6de2cb",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/229ebbe4d6de2cb",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725660759,
+        "stop" : 1594725663608,
+        "duration" : 2849
+      }
+    } ]
+  },
+  "a5247b585eeaa73a01514e1643195521" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "b0a5dc1e73df483d",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/b0a5dc1e73df483d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727985980,
+        "stop" : 1594727985981,
+        "duration" : 1
+      }
+    }, {
+      "uid" : "785e6f298483c5ff",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/785e6f298483c5ff",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727287018,
+        "stop" : 1594727287018,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "86871e14ebda8f50",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/86871e14ebda8f50",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726651917,
+        "stop" : 1594726651917,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "d6aadbb277f3d436",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/d6aadbb277f3d436",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725696291,
+        "stop" : 1594725696291,
+        "duration" : 0
+      }
+    } ]
+  },
+  "586d0bdeba7311a18258d323abcb9f72" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "2ad7e8434fe93353",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/2ad7e8434fe93353",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727725955,
+        "stop" : 1594727797136,
+        "duration" : 71181
+      }
+    }, {
+      "uid" : "731a3e853342dc5e",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/731a3e853342dc5e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727126926,
+        "stop" : 1594727129260,
+        "duration" : 2334
+      }
+    }, {
+      "uid" : "93b88f0ead590a0b",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/93b88f0ead590a0b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726459912,
+        "stop" : 1594726492788,
+        "duration" : 32876
+      }
+    }, {
+      "uid" : "9eafa243172bd31b",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/9eafa243172bd31b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725576364,
+        "stop" : 1594725590112,
+        "duration" : 13748
+      }
+    } ]
+  },
+  "013a7fe0301e6ec1e29499fe9a231af3" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 4,
+      "unknown" : 0,
+      "total" : 4
+    },
+    "items" : [ {
+      "uid" : "bacee01356e2475f",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure/#testresult/bacee01356e2475f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727970656,
+        "stop" : 1594727970657,
+        "duration" : 1
+      }
+    }, {
+      "uid" : "f7ffc56074c2ab91",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/f7ffc56074c2ab91",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727272921,
+        "stop" : 1594727272921,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "bf5947e00dd9291b",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/bf5947e00dd9291b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726638118,
+        "stop" : 1594726638118,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "ad04db974759e1b2",
+      "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/ad04db974759e1b2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725688257,
+        "stop" : 1594725688257,
+        "duration" : 0
+      }
+    } ]
+  }
+}

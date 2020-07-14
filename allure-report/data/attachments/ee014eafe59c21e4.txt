@@ -1,0 +1,33 @@
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素('name', 'account')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.02992
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素('name', 'account')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素('name', 'account')!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素('name', 'account')中输入文本408848063@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素('name', 'pass')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01695
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素('name', 'pass')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素('name', 'pass')!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素('name', 'pass')中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01994
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01196
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")!
+INFO     __name__:basepage.py:28 在首页_点击课程名称链接进入课程等待元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHubtq']//a[@class='jumptoclass']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.68350
+INFO     __name__:basepage.py:28 在首页_点击课程名称链接进入课程等待元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHubtq']//a[@class='jumptoclass']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01197
+INFO     __name__:basepage.py:61 在首页_点击课程名称链接进入课程查找元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHubtq']//a[@class='jumptoclass']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在首页_点击课程名称链接进入课程点击元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHubtq']//a[@class='jumptoclass']")!
+INFO     __name__:basepage.py:28 在课程页面_判断课程互动存在等待元素('xpath', "//div[@id='third-nav']//a[@class='active']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.99332
+INFO     __name__:basepage.py:61 在课程页面_判断课程互动存在查找元素('xpath', "//div[@id='third-nav']//a[@class='active']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.01100
+INFO     __name__:basepage.py:183 获取当前窗口url

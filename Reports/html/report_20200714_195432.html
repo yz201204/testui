@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function find_all(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sort_column(elem) {
+    toggle_sort_states(elem);
+    var colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    var key;
+    if (elem.classList.contains('numeric')) {
+        key = key_num;
+    } else if (elem.classList.contains('result')) {
+        key = key_result;
+    } else {
+        key = key_alpha;
+    }
+    sort_table(elem, key(colIndex));
+}
+
+function show_all_extras() {
+    find_all('.col-result').forEach(show_extras);
+}
+
+function hide_all_extras() {
+    find_all('.col-result').forEach(hide_extras);
+}
+
+function show_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.remove("collapsed");
+    expandcollapse.classList.remove("expander");
+    expandcollapse.classList.add("collapser");
+}
+
+function hide_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.add("collapsed");
+    expandcollapse.classList.remove("collapser");
+    expandcollapse.classList.add("expander");
+}
+
+function show_filters() {
+    var filter_items = document.getElementsByClassName('filter');
+    for (var i = 0; i < filter_items.length; i++)
+        filter_items[i].hidden = false;
+}
+
+function add_collapse() {
+    // Add links for show/hide all
+    var resulttable = find('table#results-table');
+    var showhideall = document.createElement("p");
+    showhideall.innerHTML = '<a href="javascript:show_all_extras()">Show all details</a> / ' +
+                            '<a href="javascript:hide_all_extras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    find_all('.col-result').forEach(function(elem) {
+        var collapsed = get_query_parameter('collapsed') || 'Passed';
+        var extras = elem.parentNode.nextElementSibling;
+        var expandcollapse = document.createElement("span");
+        if (extras.classList.contains("collapsed")) {
+            expandcollapse.classList.add("expander")
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add("collapsed");
+            expandcollapse.classList.add("expander");
+        } else {
+            expandcollapse.classList.add("collapser");
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener("click", function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains("collapsed")) {
+                show_extras(event.currentTarget);
+            } else {
+                hide_extras(event.currentTarget);
+            }
+        });
+    })
+}
+
+function get_query_parameter(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () {
+    reset_sort_headers();
+
+    add_collapse();
+
+    show_filters();
+
+    sort_column(find('.initial-sort'));
+
+    find_all('.sortable').forEach(function(elem) {
+        elem.addEventListener("click",
+                              function(event) {
+                                  sort_column(elem);
+                              }, false)
+    });
+
+};
+
+function sort_table(clicked, key_func) {
+    var rows = find_all('.results-table-row');
+    var reversed = !clicked.classList.contains('asc');
+    var sorted_rows = sort(rows, key_func, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    var thead = document.getElementById("results-table-head");
+    document.getElementById('results-table').remove();
+    var parent = document.createElement("table");
+    parent.id = "results-table";
+    parent.appendChild(thead);
+    sorted_rows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName("BODY")[0].appendChild(parent);
+}
+
+function sort(items, key_func, reversed) {
+    var sort_array = items.map(function(item, i) {
+        return [key_func(item), i];
+    });
+
+    sort_array.sort(function(a, b) {
+        var key_a = a[0];
+        var key_b = b[0];
+
+        if (key_a == key_b) return 0;
+
+        if (reversed) {
+            return (key_a < key_b ? 1 : -1);
+        } else {
+            return (key_a > key_b ? 1 : -1);
+        }
+    });
+
+    return sort_array.map(function(item) {
+        var index = item[1];
+        return items[index];
+    });
+}
+
+function key_alpha(col_index) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[col_index].firstChild.data.toLowerCase();
+    };
+}
+
+function key_num(col_index) {
+    return function(elem) {
+        return parseFloat(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function key_result(col_index) {
+    return function(elem) {
+        var strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+                       'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function reset_sort_headers() {
+    find_all('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    find_all('.sortable').forEach(function(elem) {
+        var icon = document.createElement("div");
+        icon.className = "sort-icon";
+        icon.textContent = "vvv";
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove("desc", "active");
+        elem.classList.add("asc", "inactive");
+    });
+}
+
+function toggle_sort_states(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        reset_sort_headers();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function is_all_rows_hidden(value) {
+  return value.hidden == false;
+}
+
+function filter_table(elem) {
+    var outcome_att = "data-test-result";
+    var outcome = elem.getAttribute(outcome_att);
+    class_outcome = outcome + " results-table-row";
+    var outcome_rows = document.getElementsByClassName(class_outcome);
+
+    for(var i = 0; i < outcome_rows.length; i++){
+        outcome_rows[i].hidden = !elem.checked;
+    }
+
+    var rows = find_all('.results-table-row').filter(is_all_rows_hidden);
+    var all_rows_hidden = rows.length == 0 ? true : false;
+    var not_found_message = document.getElementById("not-found-message");
+    not_found_message.hidden = !all_rows_hidden;
+}
+</script>
+    <h1>report_20200714_195432.html</h1>
+    <p>Report generated on 14-Jul-2020 at 20:01:40 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>BUILD_ID</td>
+        <td>6</td></tr>
+      <tr>
+        <td>BUILD_NUMBER</td>
+        <td>6</td></tr>
+      <tr>
+        <td>BUILD_TAG</td>
+        <td>jenkins-web_ketangpai-6</td></tr>
+      <tr>
+        <td>BUILD_URL</td>
+        <td><a href="http://localhost:17201/job/web_ketangpai/6/" target="_blank">http://localhost:17201/job/web_ketangpai/6/</a></td></tr>
+      <tr>
+        <td>EXECUTOR_NUMBER</td>
+        <td>0</td></tr>
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>C:\Program Files\Java\jdk1.8.0_251</td></tr>
+      <tr>
+        <td>JENKINS_URL</td>
+        <td><a href="http://localhost:17201/" target="_blank">http://localhost:17201/</a></td></tr>
+      <tr>
+        <td>JOB_NAME</td>
+        <td>web_ketangpai</td></tr>
+      <tr>
+        <td>NODE_NAME</td>
+        <td>master</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "0.13.1", "py": "1.8.0", "pytest": "5.4.3"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.18362-SP0</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{"allure-pytest": "2.8.16", "html": "2.1.1", "metadata": "1.10.0", "rerunfailures": "9.0"}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.7.1</td></tr>
+      <tr>
+        <td>WORKSPACE</td>
+        <td>C:\Program Files (x86)\Jenkins\workspace\web_ketangpai</td></tr></table>
+    <h2>Summary</h2>
+    <p>13 tests ran in 427.34 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">13 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable numeric" col="duration">Duration</th>
+          <th>Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_course.py::TestCourseG::test_add_in_course</td>
+          <td class="col-duration">2.17</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log setup------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.05381
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.02892
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.01097
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本408848063@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.03736
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01695
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00698
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01297
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在首页_点击加入课程等待元素(&#x27;css selector&#x27;, &quot;div[class=&#x27;ktcon1l fr&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.15788
+INFO     __name__:basepage.py:28 在首页_点击加入课程等待元素(&#x27;css selector&#x27;, &quot;div[class=&#x27;ktcon1l fr&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01197
+INFO     __name__:basepage.py:61 在首页_点击加入课程查找元素(&#x27;css selector&#x27;, &quot;div[class=&#x27;ktcon1l fr&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在首页_点击加入课程点击元素(&#x27;css selector&#x27;, &quot;div[class=&#x27;ktcon1l fr&#x27;]&quot;)!
+INFO     __name__:basepage.py:28 在首页_输入加课码等待元素(&#x27;css selector&#x27;, &quot;input[placeholder = &#x27;请输入课程加课验证码&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01795
+INFO     __name__:basepage.py:28 在首页_输入加课码等待元素(&#x27;css selector&#x27;, &quot;input[placeholder = &#x27;请输入课程加课验证码&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01197
+INFO     __name__:basepage.py:61 在首页_输入加课码查找元素(&#x27;css selector&#x27;, &quot;input[placeholder = &#x27;请输入课程加课验证码&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00598
+INFO     __name__:basepage.py:113 在首页_输入加课码元素(&#x27;css selector&#x27;, &quot;input[placeholder = &#x27;请输入课程加课验证码&#x27;]&quot;)中输入文本MGAJ6H!
+INFO     __name__:basepage.py:28 在首页_点击加课按钮等待元素(&#x27;xpath&#x27;, &quot;//a[text()=&#x27;加入&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.05485
+INFO     __name__:basepage.py:28 在首页_点击加课按钮等待元素(&#x27;xpath&#x27;, &quot;//a[text()=&#x27;加入&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01197
+INFO     __name__:basepage.py:61 在首页_点击加课按钮查找元素(&#x27;xpath&#x27;, &quot;//a[text()=&#x27;加入&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00496
+INFO     __name__:basepage.py:99 在首页_点击加课按钮点击元素(&#x27;xpath&#x27;, &quot;//a[text()=&#x27;加入&#x27;]&quot;)!
+INFO     __name__:basepage.py:28 在登陆页面_判断加入的课程存在等待元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.54355<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_course.py::TestCourseG::test_enter_class</td>
+          <td class="col-duration">3.73</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log setup------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01895
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01397
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00498
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本408848063@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.00997
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.00997
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在首页_点击课程名称链接进入课程等待元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[@class=&#x27;jumptoclass&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.30581
+INFO     __name__:basepage.py:28 在首页_点击课程名称链接进入课程等待元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[@class=&#x27;jumptoclass&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.02894
+INFO     __name__:basepage.py:61 在首页_点击课程名称链接进入课程查找元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[@class=&#x27;jumptoclass&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.01197
+INFO     __name__:basepage.py:99 在首页_点击课程名称链接进入课程点击元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[@class=&#x27;jumptoclass&#x27;]&quot;)!
+INFO     __name__:basepage.py:28 在课程页面_判断课程互动存在等待元素(&#x27;xpath&#x27;, &quot;//div[@id=&#x27;third-nav&#x27;]//a[@class=&#x27;active&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.14095
+INFO     __name__:basepage.py:61 在课程页面_判断课程互动存在查找元素(&#x27;xpath&#x27;, &quot;//div[@id=&#x27;third-nav&#x27;]//a[@class=&#x27;active&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00598
+INFO     __name__:basepage.py:183 获取当前窗口url<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_course.py::TestCourseG::test_quit_course</td>
+          <td class="col-duration">2.59</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log setup------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01795
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01396
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本408848063@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在首页_点击更多按钮等待元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//span[text()=&#x27;更多&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.42316
+INFO     __name__:basepage.py:28 在首页_点击更多按钮等待元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//span[text()=&#x27;更多&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01297
+INFO     __name__:basepage.py:61 在首页_点击更多按钮查找元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//span[text()=&#x27;更多&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在首页_点击更多按钮点击元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//span[text()=&#x27;更多&#x27;]&quot;)!
+INFO     __name__:basepage.py:28 在首页_点击退课按钮等待元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[text()=&#x27;退课&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在首页_点击退课按钮等待元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[text()=&#x27;退课&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在首页_点击退课按钮查找元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[text()=&#x27;退课&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00602
+INFO     __name__:basepage.py:99 在首页_点击退课按钮点击元素(&#x27;xpath&#x27;, &quot;//dl[@data-id=&#x27;MDAwMDAwMDAwMLSsqZWHuc1q&#x27;]//a[text()=&#x27;退课&#x27;]&quot;)!
+INFO     __name__:basepage.py:28 在首页_退课弹框输入密码等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;deletekt&#x27; and @style=&#x27;display: block;&#x27;]//input[@type=&#x27;password&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01547
+INFO     __name__:basepage.py:28 在首页_退课弹框输入密码等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;deletekt&#x27; and @style=&#x27;display: block;&#x27;]//input[@type=&#x27;password&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01297
+INFO     __name__:basepage.py:61 在首页_退课弹框输入密码查找元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;deletekt&#x27; and @style=&#x27;display: block;&#x27;]//input[@type=&#x27;password&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00997
+INFO     __name__:basepage.py:113 在首页_退课弹框输入密码元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;deletekt&#x27; and @style=&#x27;display: block;&#x27;]//input[@type=&#x27;password&#x27;]&quot;)中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在首页_退课弹框点击退课确认按钮等待元素(&#x27;xpath&#x27;, &quot;//a[contains(@class,&#x27;btn-positive&#x27;) and text()=&#x27;退课&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在首页_退课弹框点击退课确认按钮等待元素(&#x27;xpath&#x27;, &quot;//a[contains(@class,&#x27;btn-positive&#x27;) and text()=&#x27;退课&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在首页_退课弹框点击退课确认按钮查找元素(&#x27;xpath&#x27;, &quot;//a[contains(@class,&#x27;btn-positive&#x27;) and text()=&#x27;退课&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00601
+INFO     __name__:basepage.py:99 在首页_退课弹框点击退课确认按钮点击元素(&#x27;xpath&#x27;, &quot;//a[contains(@class,&#x27;btn-positive&#x27;) and text()=&#x27;退课&#x27;]&quot;)!
+INFO     __name__:basepage.py:208 刷新页面!!!
+INFO     __name__:basepage.py:213 判断元素是否消失!!!<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_login_success</td>
+          <td class="col-duration">71.18</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.76523
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.16883
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：1.03224
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本1303845892@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.97558
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.89082
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：1.18982
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：3.32312
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.71973
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.74800
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:28 在首页_等待用户logo元素存在等待元素(&#x27;id&#x27;, &#x27;user&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：12.56649
+INFO     __name__:basepage.py:183 获取当前窗口url<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_incorrect[incorrect_data0]</td>
+          <td class="col-duration">2.27</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01795
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01297
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本1303845892@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01396
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.00997
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:44 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)存在!
+INFO     __name__:basepage.py:56 等待元素存在时长为：0.00798
+INFO     __name__:basepage.py:28 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在登陆页面_获取错误提示信息查找元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:127 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容
+INFO     __name__:basepage.py:135 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容为：密码不能为空<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_incorrect[incorrect_data1]</td>
+          <td class="col-duration">51.03</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.51827
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.40410
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：1.31249
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.56066
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.30344
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.52759
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：3.15460
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.59276
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：1.01728
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:44 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)存在!
+INFO     __name__:basepage.py:56 等待元素存在时长为：0.77393
+INFO     __name__:basepage.py:28 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.55584
+INFO     __name__:basepage.py:61 在登陆页面_获取错误提示信息查找元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.53707
+INFO     __name__:basepage.py:127 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容
+INFO     __name__:basepage.py:135 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容为：账号不能为空<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_incorrect[incorrect_data2]</td>
+          <td class="col-duration">45.96</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：3.32362
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.68732
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.52161
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本1303845892!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.92518
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.72372
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：1.26761
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.56314
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.83410
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00698
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:44 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)存在!
+INFO     __name__:basepage.py:56 等待元素存在时长为：0.51761
+INFO     __name__:basepage.py:28 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:61 在登陆页面_获取错误提示信息查找元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00698
+INFO     __name__:basepage.py:127 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容
+INFO     __name__:basepage.py:135 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容为：用户不存在<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_add[1-3-4]</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_add[10-35-45]</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_add[22.22-22.22-44.44]</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_login_no_username_and_password</td>
+          <td class="col-duration">47.71</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：3.29223
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.15475
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.55004
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.75914
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.68901
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：1.16987
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：3.57444
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.25896
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：1.07065
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:44 在登陆页面_获取多个错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)存在!
+INFO     __name__:basepage.py:56 等待元素存在时长为：1.62869
+INFO     __name__:basepage.py:28 在登陆页面_获取多个错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.04368
+INFO     __name__:basepage.py:79 在登陆页面_获取多个错误提示信息查找多个元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)!
+INFO     __name__:basepage.py:91 查找多个元素时长为：1.59574
+INFO     __name__:basepage.py:144 在登陆页面_获取多个错误提示信息中获取多个元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容
+INFO     __name__:basepage.py:157 在登陆页面_获取多个错误提示信息中获取多个元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容列表为：[&#x27;账号不能为空&#x27;, &#x27;密码不能为空&#x27;]<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_login_err_password</td>
+          <td class="col-duration">21.87</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.52255
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素(&#x27;name&#x27;, &#x27;account&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：2.07494
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素(&#x27;name&#x27;, &#x27;account&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.49867
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素(&#x27;name&#x27;, &#x27;account&#x27;)中输入文本1303845892@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素(&#x27;name&#x27;, &#x27;pass&#x27;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01296
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素(&#x27;name&#x27;, &#x27;pass&#x27;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00599
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素(&#x27;name&#x27;, &#x27;pass&#x27;)中输入文本nmb_python1!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01596
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01197
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;pass&#x27;]/parent::div/following-sibling::a[@class=&#x27;btn-btn&#x27;]&quot;)!
+INFO     __name__:basepage.py:44 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)存在!
+INFO     __name__:basepage.py:56 等待元素存在时长为：0.51562
+INFO     __name__:basepage.py:28 在登陆页面_获取错误提示信息等待元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01097
+INFO     __name__:basepage.py:61 在登陆页面_获取错误提示信息查找元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:127 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容
+INFO     __name__:basepage.py:135 在登陆页面_获取错误提示信息中获取元素(&#x27;css selector&#x27;, &quot;p[class=&#x27;error-tips&#x27;]&quot;)的文本内容为：密码错误, 你还可以尝试4次<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_fail</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody></table></body></html>

@@ -1,0 +1,65 @@
+1594546709553	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\86186\\AppData\\Local\\Temp\\rust_mozprofilefJS65w"
+1594546715249	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\86186\\AppData\\Local\\Temp\\rust_mozprofile9gq2VA"
+1594546723145	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\86186\\AppData\\Local\\Temp\\rust_mozprofileuZcX4c"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1594546726617	Marionette	INFO	Listening on port 50143
+1594546726761	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/modules/URIFixup.jsm, line 281: NS_ERROR_FAILURE: Should pass a non-null uri
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+1594546734273	Marionette	INFO	Stopped listening on port 50143
+[Parent 73784, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1594546810660	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\86186\\AppData\\Local\\Temp\\rust_mozprofilewy1eF9"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1594546813501	Marionette	INFO	Listening on port 50381
+1594546813780	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/modules/URIFixup.jsm, line 281: NS_ERROR_FAILURE: Should pass a non-null uri
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+1594546827760	Marionette	INFO	Stopped listening on port 50381
+[Parent 70244, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1594546832191	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\86186\\AppData\\Local\\Temp\\rust_mozprofile5i6e4m"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1594546834366	Marionette	INFO	Listening on port 50479
+1594546834805	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/modules/URIFixup.jsm, line 281: NS_ERROR_FAILURE: Should pass a non-null uri
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/live/ktp-wsaudio-api.min.js?20200709100, line 1: asm.js type error: double is not a subtype of int
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+1594546841082	Marionette	INFO	Stopped listening on port 50479
+[Parent 71940, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1594546845485	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\86186\\AppData\\Local\\Temp\\rust_mozprofilegwNS2C"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1594546847538	Marionette	INFO	Listening on port 50556
+1594546847624	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/modules/URIFixup.jsm, line 281: NS_ERROR_FAILURE: Should pass a non-null uri
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+JavaScript warning: https://www.ketangpai.com/Public/Common/js/module/plugin.js?20200709100, line 1: unreachable code after return statement
+1594546855147	Marionette	INFO	Stopped listening on port 50556
+[Parent 65504, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

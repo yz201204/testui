@@ -1,0 +1,133 @@
+{
+  "uid" : "7b8ba1cd52f0f754",
+  "name" : "test_add_in_course",
+  "fullName" : "TestCases.test_course.TestCourseG#test_add_in_course",
+  "historyId" : "2d05b6e4a50a37632f00747a12a14907",
+  "time" : {
+    "start" : 1594726919040,
+    "stop" : 1594726921512,
+    "duration" : 2472
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "course_grid",
+    "time" : {
+      "start" : 1594726900920,
+      "stop" : 1594726919038,
+      "duration" : 18118
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course",
+    "time" : {
+      "start" : 1594726900403,
+      "stop" : 1594726900919,
+      "duration" : 516
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "843bbe56968fb726",
+      "name" : "log",
+      "source" : "843bbe56968fb726.txt",
+      "type" : "text/plain",
+      "size" : 4496
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "course_grid::0",
+    "time" : {
+      "start" : 1594726921513,
+      "stop" : 1594726923579,
+      "duration" : 2066
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course::0",
+    "time" : {
+      "start" : 1594727325819,
+      "stop" : 1594727326162,
+      "duration" : 343
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('course_grid')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "TestCases"
+  }, {
+    "name" : "suite",
+    "value" : "test_course"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCourseG"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-KFH4O7N"
+  }, {
+    "name" : "thread",
+    "value" : "10824-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "TestCases.test_course"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('course_grid')" ]
+  },
+  "source" : "7b8ba1cd52f0f754.json",
+  "parameterValues" : [ ]
+}

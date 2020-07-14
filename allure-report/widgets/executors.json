@@ -1,0 +1,10 @@
+[ {
+  "name" : "Jenkins",
+  "type" : "jenkins",
+  "url" : "http://localhost:17201/",
+  "buildOrder" : 6,
+  "buildName" : "web_ketangpai #6",
+  "buildUrl" : "http://localhost:17201/job/web_ketangpai/6/",
+  "reportName" : "AllureReport",
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure"
+} ]

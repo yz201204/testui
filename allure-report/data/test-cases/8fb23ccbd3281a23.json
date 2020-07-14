@@ -1,0 +1,219 @@
+{
+  "uid" : "8fb23ccbd3281a23",
+  "name" : "test_incorrect[incorrect_data0]",
+  "fullName" : "TestCases.test_login.TestLogin#test_incorrect",
+  "historyId" : "e64c0af6fef26d85bcdee262d7a7479c",
+  "time" : {
+    "start" : 1594727808102,
+    "stop" : 1594727810367,
+    "duration" : 2265
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "init_driver",
+    "time" : {
+      "start" : 1594727799210,
+      "stop" : 1594727808100,
+      "duration" : 8890
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course",
+    "time" : {
+      "start" : 1594727673386,
+      "stop" : 1594727673848,
+      "duration" : 462
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "c154410107cfaf1c",
+      "name" : "log",
+      "source" : "c154410107cfaf1c.txt",
+      "type" : "text/plain",
+      "size" : 3028
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "init_driver::0",
+    "time" : {
+      "start" : 1594727810368,
+      "stop" : 1594727812422,
+      "duration" : 2054
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course::0",
+    "time" : {
+      "start" : 1594728100121,
+      "stop" : 1594728100465,
+      "duration" : 344
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('init_driver')"
+  }, {
+    "name" : "tag",
+    "value" : "login"
+  }, {
+    "name" : "parentSuite",
+    "value" : "TestCases"
+  }, {
+    "name" : "suite",
+    "value" : "test_login"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLogin"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-KFH4O7N"
+  }, {
+    "name" : "thread",
+    "value" : "25668-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "TestCases.test_login"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "incorrect_data",
+    "value" : "{'username': '1303845892@qq.com', 'password': '', 'check': '密码不能为空'}"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "b6d77fa562c5f00b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727143519,
+        "stop" : 1594727173193,
+        "duration" : 29674
+      }
+    }, {
+      "uid" : "4d83c801f9774fa",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726507808,
+        "stop" : 1594726560331,
+        "duration" : 52523
+      }
+    }, {
+      "uid" : "26ed7d7aea2b9f63",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725604713,
+        "stop" : 1594725638461,
+        "duration" : 33748
+      }
+    }, {
+      "uid" : "6c6575027d977d13",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594723588957,
+        "stop" : 1594723591400,
+        "duration" : 2443
+      }
+    }, {
+      "uid" : "e4078dd6b93ff4d5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594723045870,
+        "stop" : 1594723048223,
+        "duration" : 2353
+      }
+    } ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "aa9d9b53d04e6a1f",
+        "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/aa9d9b53d04e6a1f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1594727143519,
+          "stop" : 1594727173193,
+          "duration" : 29674
+        }
+      }, {
+        "uid" : "7073beb7ac8aeefa",
+        "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/7073beb7ac8aeefa",
+        "status" : "passed",
+        "time" : {
+          "start" : 1594726507808,
+          "stop" : 1594726560331,
+          "duration" : 52523
+        }
+      }, {
+        "uid" : "544edaf7bd366e8b",
+        "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/544edaf7bd366e8b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1594725604713,
+          "stop" : 1594725638461,
+          "duration" : 33748
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.usefixtures('init_driver')", "login" ]
+  },
+  "source" : "8fb23ccbd3281a23.json",
+  "parameterValues" : [ "{'username': '1303845892@qq.com', 'password': '', 'check': '密码不能为空'}" ]
+}

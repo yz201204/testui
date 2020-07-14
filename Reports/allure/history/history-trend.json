@@ -1,0 +1,37 @@
+[ {
+  "buildOrder" : 5,
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure",
+  "reportName" : "AllureReport",
+  "data" : {
+    "failed" : 0,
+    "broken" : 0,
+    "skipped" : 0,
+    "passed" : 13,
+    "unknown" : 0,
+    "total" : 13
+  }
+}, {
+  "buildOrder" : 4,
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure",
+  "reportName" : "AllureReport",
+  "data" : {
+    "failed" : 0,
+    "broken" : 0,
+    "skipped" : 0,
+    "passed" : 13,
+    "unknown" : 0,
+    "total" : 13
+  }
+}, {
+  "buildOrder" : 3,
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure",
+  "reportName" : "AllureReport",
+  "data" : {
+    "failed" : 0,
+    "broken" : 0,
+    "skipped" : 0,
+    "passed" : 13,
+    "unknown" : 0,
+    "total" : 13
+  }
+} ]

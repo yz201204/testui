@@ -1,0 +1,29 @@
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素('name', 'account')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.02394
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素('name', 'account')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01795
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素('name', 'account')!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素('name', 'account')中输入文本!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素('name', 'pass')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01995
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素('name', 'pass')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01296
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素('name', 'pass')!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00598
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素('name', 'pass')中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01798
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01293
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")!
+INFO     __name__:basepage.py:44 在登陆页面_获取错误提示信息等待元素('css selector', "p[class='error-tips']")存在!
+INFO     __name__:basepage.py:56 等待元素存在时长为：0.00798
+INFO     __name__:basepage.py:28 在登陆页面_获取错误提示信息等待元素('css selector', "p[class='error-tips']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01400
+INFO     __name__:basepage.py:61 在登陆页面_获取错误提示信息查找元素('css selector', "p[class='error-tips']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00595
+INFO     __name__:basepage.py:127 在登陆页面_获取错误提示信息中获取元素('css selector', "p[class='error-tips']")的文本内容
+INFO     __name__:basepage.py:135 在登陆页面_获取错误提示信息中获取元素('css selector', "p[class='error-tips']")的文本内容为：账号不能为空

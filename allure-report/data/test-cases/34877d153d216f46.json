@@ -1,0 +1,213 @@
+{
+  "uid" : "34877d153d216f46",
+  "name" : "test_quit_course",
+  "fullName" : "TestCases.test_course.TestCourseG#test_quit_course",
+  "historyId" : "798d3155671bba87c0bd421a37d30b90",
+  "time" : {
+    "start" : 1594727710457,
+    "stop" : 1594727713047,
+    "duration" : 2590
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "course_grid",
+    "time" : {
+      "start" : 1594727703668,
+      "stop" : 1594727710457,
+      "duration" : 6789
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course",
+    "time" : {
+      "start" : 1594727673386,
+      "stop" : 1594727673848,
+      "duration" : 462
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "344f5fba719a503b",
+      "name" : "log",
+      "source" : "344f5fba719a503b.txt",
+      "type" : "text/plain",
+      "size" : 5666
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "course_grid::0",
+    "time" : {
+      "start" : 1594727713047,
+      "stop" : 1594727715107,
+      "duration" : 2060
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course::0",
+    "time" : {
+      "start" : 1594728100121,
+      "stop" : 1594728100465,
+      "duration" : 344
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('course_grid')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "TestCases"
+  }, {
+    "name" : "suite",
+    "value" : "test_course"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCourseG"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-KFH4O7N"
+  }, {
+    "name" : "thread",
+    "value" : "25668-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "TestCases.test_course"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "1160cb36cd9a5201",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594727110515,
+        "stop" : 1594727112807,
+        "duration" : 2292
+      }
+    }, {
+      "uid" : "79c03ff7b1715a6f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594726443755,
+        "stop" : 1594726446583,
+        "duration" : 2828
+      }
+    }, {
+      "uid" : "c2376332dd54c8de",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594725560459,
+        "stop" : 1594725563350,
+        "duration" : 2891
+      }
+    }, {
+      "uid" : "1a60c238bafd083",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594723568633,
+        "stop" : 1594723571004,
+        "duration" : 2371
+      }
+    }, {
+      "uid" : "7f50cc47f747062f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1594723025267,
+        "stop" : 1594723027757,
+        "duration" : 2490
+      }
+    } ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "90849b44b894e29",
+        "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure/#testresult/90849b44b894e29",
+        "status" : "passed",
+        "time" : {
+          "start" : 1594727110515,
+          "stop" : 1594727112807,
+          "duration" : 2292
+        }
+      }, {
+        "uid" : "db3b84ac80a5b9f2",
+        "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure/#testresult/db3b84ac80a5b9f2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1594726443755,
+          "stop" : 1594726446583,
+          "duration" : 2828
+        }
+      }, {
+        "uid" : "93437e6c40268be0",
+        "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure/#testresult/93437e6c40268be0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1594725560459,
+          "stop" : 1594725563350,
+          "duration" : 2891
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.usefixtures('course_grid')" ]
+  },
+  "source" : "34877d153d216f46.json",
+  "parameterValues" : [ ]
+}

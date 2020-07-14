@@ -1,0 +1,21 @@
+[ {
+  "buildOrder" : 6,
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/6/allure",
+  "reportName" : "AllureReport",
+  "data" : { }
+}, {
+  "buildOrder" : 5,
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/5/allure",
+  "reportName" : "AllureReport",
+  "data" : { }
+}, {
+  "buildOrder" : 4,
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/4/allure",
+  "reportName" : "AllureReport",
+  "data" : { }
+}, {
+  "buildOrder" : 3,
+  "reportUrl" : "http://localhost:17201/job/web_ketangpai/3/allure",
+  "reportName" : "AllureReport",
+  "data" : { }
+} ]

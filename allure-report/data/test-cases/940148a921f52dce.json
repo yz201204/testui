@@ -1,0 +1,143 @@
+{
+  "uid" : "940148a921f52dce",
+  "name" : "test_enter_class",
+  "fullName" : "TestCases.test_course.TestCourseG#test_enter_class",
+  "historyId" : "53290d88e20d2317f31f454c1fd13191",
+  "time" : {
+    "start" : 1594726987478,
+    "stop" : 1594727083257,
+    "duration" : 95779
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert False\n +  where False = <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>>()\n +    where <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>> = <PageObjects.class_page.ClassPage object at 0x00000272C6575128>.if_active_is_exist",
+  "statusTrace" : "self = <TestCases.test_course.TestCourseG object at 0x00000272C63D90F0>\ncourse_grid = (<selenium.webdriver.chrome.webdriver.WebDriver (session=\"3498bdd9557551404957a720560018aa\")>, <PageObjects.index_page...C6544A90>, ('MDAwMDAwMDAwMLSsqZWHuc2v', 'G5DZYK', <API.api_course_operate.CourseOperate object at 0x00000272C63A7320>))\n\n    def test_enter_class(self, course_grid):\n        # 1、有已加入的课程\n        # course_grid[1].add_in_course(course_grid[2][1])\n        course_grid[1].enter_class(course_grid[2][0])\n        cp = ClassPage(course_grid[0])\n        cur_url = cd.base_url + cd.class_url.format(course_grid[2][0])\n>       assert cp.if_active_is_exist()\nE       assert False\nE        +  where False = <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>>()\nE        +    where <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>> = <PageObjects.class_page.ClassPage object at 0x00000272C6575128>.if_active_is_exist\n\nC:\\Users\\86186\\PycharmProjects\\web\\TestCases\\test_course.py:33: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "course_grid",
+    "time" : {
+      "start" : 1594726923590,
+      "stop" : 1594726987477,
+      "duration" : 63887
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course",
+    "time" : {
+      "start" : 1594726900403,
+      "stop" : 1594726900919,
+      "duration" : 516
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert False\n +  where False = <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>>()\n +    where <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>> = <PageObjects.class_page.ClassPage object at 0x00000272C6575128>.if_active_is_exist",
+    "statusTrace" : "self = <TestCases.test_course.TestCourseG object at 0x00000272C63D90F0>\ncourse_grid = (<selenium.webdriver.chrome.webdriver.WebDriver (session=\"3498bdd9557551404957a720560018aa\")>, <PageObjects.index_page...C6544A90>, ('MDAwMDAwMDAwMLSsqZWHuc2v', 'G5DZYK', <API.api_course_operate.CourseOperate object at 0x00000272C63A7320>))\n\n    def test_enter_class(self, course_grid):\n        # 1、有已加入的课程\n        # course_grid[1].add_in_course(course_grid[2][1])\n        course_grid[1].enter_class(course_grid[2][0])\n        cp = ClassPage(course_grid[0])\n        cur_url = cd.base_url + cd.class_url.format(course_grid[2][0])\n>       assert cp.if_active_is_exist()\nE       assert False\nE        +  where False = <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>>()\nE        +    where <bound method ClassPage.if_active_is_exist of <PageObjects.class_page.ClassPage object at 0x00000272C6575128>> = <PageObjects.class_page.ClassPage object at 0x00000272C6575128>.if_active_is_exist\n\nC:\\Users\\86186\\PycharmProjects\\web\\TestCases\\test_course.py:33: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "9596b20ba7ea4772",
+      "name" : "log",
+      "source" : "9596b20ba7ea4772.txt",
+      "type" : "text/plain",
+      "size" : 3290
+    }, {
+      "uid" : "83f6f87a56388e67",
+      "name" : "stderr",
+      "source" : "83f6f87a56388e67.txt",
+      "type" : "text/plain",
+      "size" : 127
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true
+  },
+  "afterStages" : [ {
+    "name" : "course_grid::0",
+    "time" : {
+      "start" : 1594727083298,
+      "stop" : 1594727085382,
+      "duration" : 2084
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "init_course::0",
+    "time" : {
+      "start" : 1594727325819,
+      "stop" : 1594727326162,
+      "duration" : 343
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('course_grid')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "TestCases"
+  }, {
+    "name" : "suite",
+    "value" : "test_course"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCourseG"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-KFH4O7N"
+  }, {
+    "name" : "thread",
+    "value" : "10824-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "TestCases.test_course"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('course_grid')" ]
+  },
+  "source" : "940148a921f52dce.json",
+  "parameterValues" : [ ]
+}

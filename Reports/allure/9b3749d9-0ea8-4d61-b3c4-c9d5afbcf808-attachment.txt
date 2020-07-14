@@ -1,0 +1,51 @@
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素('name', 'account')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.02693
+INFO     __name__:basepage.py:28 在登陆页面_输入用户名等待元素('name', 'account')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:61 在登陆页面_输入用户名查找元素('name', 'account')!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在登陆页面_输入用户名元素('name', 'account')中输入文本408848063@qq.com!
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素('name', 'pass')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在登陆页面_输入密码等待元素('name', 'pass')可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.00898
+INFO     __name__:basepage.py:61 在登陆页面_输入密码查找元素('name', 'pass')!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:113 在登陆页面_输入密码元素('name', 'pass')中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在登陆页面_点击登陆按钮等待元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.00997
+INFO     __name__:basepage.py:61 在登陆页面_点击登陆按钮查找元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00399
+INFO     __name__:basepage.py:99 在登陆页面_点击登陆按钮点击元素('xpath', "//input[@name='pass']/parent::div/following-sibling::a[@class='btn-btn']")!
+INFO     __name__:basepage.py:28 在首页_点击更多按钮等待元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//span[text()='更多']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：1.34642
+INFO     __name__:basepage.py:28 在首页_点击更多按钮等待元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//span[text()='更多']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01094
+INFO     __name__:basepage.py:61 在首页_点击更多按钮查找元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//span[text()='更多']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在首页_点击更多按钮点击元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//span[text()='更多']")!
+INFO     __name__:basepage.py:28 在首页_点击退课按钮等待元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//a[text()='退课']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01597
+INFO     __name__:basepage.py:28 在首页_点击退课按钮等待元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//a[text()='退课']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01295
+INFO     __name__:basepage.py:61 在首页_点击退课按钮查找元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//a[text()='退课']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在首页_点击退课按钮点击元素('xpath', "//dl[@data-id='MDAwMDAwMDAwMLSsqZWHuc2v']//a[text()='退课']")!
+INFO     __name__:basepage.py:28 在首页_退课弹框输入密码等待元素('xpath', "//div[@class='deletekt' and @style='display: block;']//input[@type='password']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在首页_退课弹框输入密码等待元素('xpath', "//div[@class='deletekt' and @style='display: block;']//input[@type='password']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.00997
+INFO     __name__:basepage.py:61 在首页_退课弹框输入密码查找元素('xpath', "//div[@class='deletekt' and @style='display: block;']//input[@type='password']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:113 在首页_退课弹框输入密码元素('xpath', "//div[@class='deletekt' and @style='display: block;']//input[@type='password']")中输入文本nmb_python!
+INFO     __name__:basepage.py:28 在首页_退课弹框点击退课确认按钮等待元素('xpath', "//a[contains(@class,'btn-positive') and text()='退课']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01496
+INFO     __name__:basepage.py:28 在首页_退课弹框点击退课确认按钮等待元素('xpath', "//a[contains(@class,'btn-positive') and text()='退课']")可见!
+INFO     __name__:basepage.py:40 等待元素可见时长为：0.01197
+INFO     __name__:basepage.py:61 在首页_退课弹框点击退课确认按钮查找元素('xpath', "//a[contains(@class,'btn-positive') and text()='退课']")!
+INFO     __name__:basepage.py:73 查找元素时长为：0.00499
+INFO     __name__:basepage.py:99 在首页_退课弹框点击退课确认按钮点击元素('xpath', "//a[contains(@class,'btn-positive') and text()='退课']")!
+INFO     __name__:basepage.py:208 刷新页面!!!
+INFO     __name__:basepage.py:213 判断元素是否消失!!!
